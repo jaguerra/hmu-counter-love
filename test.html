@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head>
+    <title>WS test</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'/>
+    <style></style>
+</head>
+<body>
+Check the console...
+<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+    var socket = io();
+    socket.on('love', function(msg) {
+        console.log('Love is in the air!');
+    });
+
+</script>
+</body>
+</html>
