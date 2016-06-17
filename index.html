@@ -49,6 +49,40 @@
             animation: heart-pulse 1.5s ease-in-out infinite;
         }
 
+        #poo-wrap {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            height: 100px;
+            width: 100px;
+            z-index: 2;
+            margin-left: -50px;
+            margin-top: -50px;
+            /*background-color: #ccc;*/
+            /*border-radius: 100px;*/
+            /*border: 3px solid #000;*/
+        }
+
+
+        #poo {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: url(poo.png);
+            background-repeat: no-repeat;
+            background-position: 50%;
+            background-size: contain;
+            z-index: 4;
+            margin-left: -50px;
+            margin-top: -50px;
+        }
+
+        #poo.active {
+            animation: pulse 0.4s ease;
+        }
+
         .ripple {
             overflow: hidden;
         }
@@ -92,6 +126,7 @@
                 transform: scale(1.4);
             }
         }
+
     </style>
 </head>
 <body>
@@ -99,6 +134,9 @@
     <div id="heart-wrap"></div>
     <div id="heart"></div>
 </div>
+
+<div id="poo-wrap"></div>
+<div id="poo"></div>
 
 <script src="//code.jquery.com/jquery-1.11.1.js"></script>
 <script>
@@ -113,9 +151,10 @@
             $('.ripple').on('click', function (event) {
                 event.preventDefault();
                 var $div = $('<div/>'),
+                        $this = $(this),
                         $heartWrap = $('<div id="heart-wrap" class="active"/>'),
-                        xPos = $(this).width() / 2 - 25,
-                        yPos = $(this).height() / 2 - 25;
+                        xPos = $this.width() / 2 - 25,
+                        yPos = $this.height() / 2 - 25;
 
                 $div.addClass('ripple-effect');
                 var $ripple = $div;
@@ -123,15 +162,25 @@
                         .css({
                             top: yPos - ($ripple.height() / 2),
                             left: xPos - ($ripple.width() / 2),
-                            background: $(this).data("ripple-color")
+                            background: $this.data("ripple-color")
                         })
-                        .appendTo($(this));
-                $heartWrap.appendTo($(this));
+                        .appendTo($this);
+
+                $heartWrap.appendTo($this);
 
                 window.setTimeout(function () {
                     $div.remove();
                     $heartWrap.remove();
                 }, 2000);
+            });
+
+            $('#poo').click(function() {
+                var theClass = 'active',
+                        $this = $(this);
+                $this.removeClass(theClass);
+                window.setTimeout(function () {
+                    $this.addClass(theClass);
+                }, 30);
             });
 
         });
