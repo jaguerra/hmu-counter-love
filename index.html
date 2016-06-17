@@ -177,6 +177,7 @@
             $('#poo').click(function() {
                 var theClass = 'active',
                         $this = $(this);
+                $.ajax('/poo');
                 $this.removeClass(theClass);
                 window.setTimeout(function () {
                     $this.addClass(theClass);
