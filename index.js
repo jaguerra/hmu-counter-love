@@ -11,10 +11,13 @@ app.get('/test', function (req, res) {
     res.sendFile(__dirname + '/test.html');
 });
 
+app.get('/heart.svg', function (req, res) {
+    res.sendFile(__dirname + '/heart.svg');
+});
+
 app.get('/love', function (req, res) {
     res.send('OK');
     io.emit('love', true);
-    console.log('♥');
 });
 
 http.listen(port, function () {
